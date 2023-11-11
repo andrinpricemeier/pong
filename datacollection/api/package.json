@@ -1,0 +1,25 @@
+{
+  "name": "pong",
+  "version": "1.0.0",
+  "description": "The official inETF REST-API.",
+  "scripts": {
+    "build": "tsc",
+    "clean": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./clean.ps1",
+    "prepare-layer": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./prepare-layer.ps1",
+    "pre-deploy": "npm run clean && npm install --production && npm run build && npm run prepare-layer",
+    "deploy": "npm run pre-deploy && SET \"NODE_ENV=prod\" && sls deploy",
+    "remove": "SET \"NODE_ENV=prod\" && sls remove",
+    "rm-dev": "SET \"NODE_ENV=dev\" && sls remove"
+  },
+  "author": "bmpi AG",
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.79",
+    "@types/cors": "^2.8.12",
+    "@types/node": "^16.4.0",
+    "aws-sdk": "^2.950.0",
+    "cors": "^2.8.5",
+    "serverless-domain-manager": "^5.1.3",
+    "typescript": "^4.3.5",
+    "uuid": "^3.3.2"
+  }
+}

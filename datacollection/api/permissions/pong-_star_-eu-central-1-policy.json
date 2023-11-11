@@ -1,0 +1,252 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "apigateway:UpdateRestApiPolicy"
+            ],
+            "Resource": [
+                "arn:aws:apigateway:eu-central-1::/restapis/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:List*",
+                "cloudformation:Get*",
+                "cloudformation:ValidateTemplate"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:CreateStack",
+                "cloudformation:CreateUploadBucket",
+                "cloudformation:DeleteStack",
+                "cloudformation:Describe*",
+                "cloudformation:UpdateStack"
+            ],
+            "Resource": [
+                "arn:aws:cloudformation:eu-central-1:*:stack/pong-*/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:Get*",
+                "lambda:List*",
+                "lambda:CreateFunction",
+                "lambda:PublishLayerVersion",
+                "lambda:DeleteLayerVersion"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:CreateBucket",
+                "s3:DeleteBucket",
+                "s3:ListBucket",
+                "s3:ListBucketVersions",
+                "s3:PutAccelerateConfiguration",
+                "s3:GetEncryptionConfiguration",
+                "s3:PutEncryptionConfiguration"
+            ],
+            "Resource": [
+                "arn:aws:s3:::pong*serverlessdeploy*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::pong*serverlessdeploy*"
+            ]
+        },
+        {
+            "Sid": "ModifyBucketPolicy",
+            "Action": [
+                "s3:GetBucketPolicy",
+                "s3:PutBucketPolicy",
+                "s3:DeleteBucketPolicy"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::pong*serverlessdeploy*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:AddPermission",
+                "lambda:CreateAlias",
+                "lambda:DeleteFunction",
+                "lambda:InvokeFunction",
+                "lambda:PublishVersion",
+                "lambda:RemovePermission",
+                "lambda:Update*"
+            ],
+            "Resource": [
+                "arn:aws:lambda:eu-central-1:*:function:pong-*-*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "apigateway:GET",
+                "apigateway:POST",
+                "apigateway:PUT",
+                "apigateway:DELETE",
+                "apigateway:PATCH"
+            ],
+            "Resource": [
+                "arn:aws:apigateway:*::/restapis*",
+                "arn:aws:apigateway:*::/apikeys*",
+                "arn:aws:apigateway:*::/usageplans*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:role/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "kinesis:*",
+            "Resource": [
+                "arn:aws:kinesis:*:*:stream/pong-*-eu-central-1"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetRole",
+                "iam:CreateRole",
+                "iam:PutRolePolicy",
+                "iam:DeleteRolePolicy",
+                "iam:DeleteRole",
+                "iam:AttachRolePolicy",
+                "iam:DetachRolePolicy"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:role/pong-*-eu-central-1-lambdaRole"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "sqs:*",
+            "Resource": [
+                "arn:aws:sqs:*:*:pong-*-eu-central-1"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:GetMetricStatistics"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:DeleteLogGroup"
+            ],
+            "Resource": [
+                "arn:aws:logs:eu-central-1:*:*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:eu-central-1:*:*"
+            ],
+            "Effect": "Allow"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:DescribeLogStreams",
+                "logs:DescribeLogGroups",
+                "logs:FilterLogEvents"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "events:Put*",
+                "events:Remove*",
+                "events:Delete*"
+            ],
+            "Resource": [
+                "arn:aws:events:*:*:rule/pong-*-eu-central-1"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "events:DescribeRule"
+            ],
+            "Resource": [
+                "arn:aws:events:eu-central-1:*:rule/pong-*-*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:CreateBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameter"
+            ],
+            "Resource": [
+                "arn:aws:ssm:eu-central-1:159983434843:parameter/inetf/dev/rds/host",
+                "arn:aws:ssm:eu-central-1:159983434843:parameter/inetf/dev/rds/dbname",
+                "arn:aws:ssm:eu-central-1:159983434843:parameter/inetf/dev/rds/username",
+                "arn:aws:ssm:eu-central-1:159983434843:parameter/inetf/dev/rds/password",
+                "arn:aws:ssm:eu-central-1:159983434843:parameter/inetf/prod/rds/host",
+                "arn:aws:ssm:eu-central-1:159983434843:parameter/inetf/prod/rds/dbname",
+                "arn:aws:ssm:eu-central-1:159983434843:parameter/inetf/prod/rds/username",
+                "arn:aws:ssm:eu-central-1:159983434843:parameter/inetf/prod/rds/password"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+service: pong
+variablesResolutionMode: 20210326
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: eu-central-1
+  stage: ${env:NODE_ENV}
+  profile: pong
+  lambdaHashingVersion: 20201221  
+  environment:
+    NODE_ENV: ${env:NODE_ENV}
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 's3:Put*'
+          Resource:
+            - 'arn:aws:s3:::pong/*'
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!src/**'
+
+layers:
+  nodeModules:
+    path: layer
+    compatibleRuntimes:
+      - nodejs14.x
+
+functions:
+  uploadData:
+    handler: dist/uploadData.handler
+    layers:
+      - {Ref: NodeModulesLambdaLayer}
+    events:
+      - http:
+          path: /data
+          method: POST
+          cors: true
